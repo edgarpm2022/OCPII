@@ -1,0 +1,40 @@
+//SINGLETON
+
+/* The singleton pattern is a creational pattern focused on creating only one instance of an
+object in memory within an application, sharable by all classes and threads within the application */
+
+//example singleton class
+
+public class HayStorage {
+
+	private int quantity = 0;
+	
+	private HayStorage() {}		//private constructor, private instance fields
+
+	private static final instance = new HayStorage();  //private static and final instance initialzation
+
+	public static HayStorage getInstance() {	   //instance can only be accessed through static method
+		return instance;
+	}
+
+	public synchronized void addHay(int amount) {	   // methods to access instance fields are declared with the		
+		quantity += amount;			   // synchronized keyword to prevent two processes from 	
+	}						   // running the methods at the same time
+	
+	public synchronized boolean removeHay(int amount) {
+		if (quantity < amount) {
+			return false;
+		}
+		
+		quantity -= amount;
+		return true;
+	}
+
+	public synchronized int getQuantity() {
+		return quantity;
+	}
+
+}
+
+/* A process that wants to use this singleton first calls HayStorage.getInstance() and then calls the appropriate
+public method*/
