@@ -26,7 +26,7 @@ public final class Animal {	//making the class final prevents the methods from b
 		}
 		
 		this.favoriteFoods = new ArrayList<String>(favoriteFoods);  //prevents the class that creates the object of
-	}								    //Animal from maintaining a reference to 									    //Animal's mutable List.	
+	}								    //Animal from maintaining a reference to 									    		    //Animal's mutable List.	
 
 	public String getSpecies() {		//public constructors and public methods
 		return species;
