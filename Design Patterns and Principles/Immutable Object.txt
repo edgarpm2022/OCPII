@@ -1,0 +1,47 @@
+//IMMUTABLE OBJECT
+
+/* The immutable object pattern is a creational pattern based on the idea of creating objects
+whose state does not change after they are created and can be easily shared across multiple
+classes */
+
+/* Strategy for building immutable objects:
+1. Use a constructor to set all properties of the object.
+2. Mark all the instance variables private and final.
+3. Don't define any setter methods.
+4. Don't allow referenced mutable objects to be modified or accessed directly.
+5. Prevent methods from being overriden. */
+
+// Example of an immutable class
+
+public final class Animal {	//making the class final prevents the methods from being overriden
+	private final String species;
+	private final int age;
+	private final List<String> favoriteFoods;		//all fields are marked private and final
+
+	public Animal(String species, int age, List<String> favoriteFoods) {
+		this.species = species;
+		this.age = age;
+		if (favoriteFoods == null) {
+			throw new RuntimeException("favoriteFoods is required");
+		}
+		
+		this.favoriteFoods = new ArrayList<String>(favoriteFoods);  //prevents the class that creates the object of
+	}								    //Animal from maintaining a reference to 									    //Animal's mutable List.	
+
+	public String getSpecies() {		//public constructors and public methods
+		return species;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public int getFavoriteFoodsCount() {
+		return favoriteFoods.size();
+	}
+
+	public String getFavoriteFood(int index) {
+		return favoriteFoods.get(index);
+	}
+
+}
