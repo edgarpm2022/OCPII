@@ -1,0 +1,72 @@
+//BUILDER PATTERN
+/* The builder pattern is a creational pattern in which parameters are passed to a builder object, 
+often throuh method chaining, and an object is generated with a final build call. It is often used with
+immutable objects. */
+
+
+//Builder pattern example
+/* 1. It does not have static methods or fields
+   2. It does not implement its own constructor	
+   3. Methods return an instance of the builder class
+*/	
+
+public class AnimalBuilder {
+	private String species;			
+	private int age;
+	private List<String> favoriteFoods;
+
+	public AnimalBuilder setAge(int age) {
+		this.age = age;
+		return this;
+	}
+
+	public AnimalBuilder setSpecies(String species) {
+		this.species = species;
+		return this;
+	}
+
+	public AnimalBuilder setFavoriteFoods(List<String> favoriteFoods) {
+		this.favoriteFoods = favoriteFoods;
+		return this;
+	}
+
+	public Animal build() {
+		return new Animal(species, age, favoriteFoods);
+	}
+
+}
+
+//Builder class is 'tightly coupled' to a 'target' class, in this case an Immutable Object type.
+
+public final class Animal {	//making the class final prevents the methods from being overriden
+	private final String species;
+	private final int age;
+	private final List<String> favoriteFoods;		//all fields are marked private and final
+
+	public Animal(String species, int age, List<String> favoriteFoods) {
+		this.species = species;
+		this.age = age;
+		if (favoriteFoods == null) {
+			throw new RuntimeException("favoriteFoods is required");
+		}
+		
+		this.favoriteFoods = new ArrayList<String>(favoriteFoods);  //prevents the class that creates the object of
+	}								    //Animal from maintaining a reference to 									    		    //Animal's mutable List.	
+
+	public String getSpecies() {		//public constructors and public methods
+		return species;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public int getFavoriteFoodsCount() {
+		return favoriteFoods.size();
+	}
+
+	public String getFavoriteFood(int index) {
+		return favoriteFoods.get(index);
+	}
+
+}
