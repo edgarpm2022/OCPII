@@ -1,6 +1,6 @@
 //BUILDER PATTERN
 /* The builder pattern is a creational pattern in which parameters are passed to a builder object, 
-often throuh method chaining, and an object is generated with a final build call. It is often used with
+often through method chaining, and an object is generated with a final build call. It is often used with
 immutable objects. */
 
 
